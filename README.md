@@ -1,2 +1,3 @@
 # daily_feed
-Code to pull RSS data from a variety of (mostly data-related) aggregators, forums, and sites. 
+
+Code to pull RSS data from a variety of (mostly data-related) aggregators, forums, and sites. Output in RSS style format. 
