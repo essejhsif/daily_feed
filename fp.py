@@ -5,14 +5,12 @@ from xml.etree.ElementTree import Element, SubElement, Comment
 import xmlformatter
 
 root = ET.Element("rss")   
-
 item = ET.SubElement(root,"item")
 
 datatau = ET.SubElement(item,"datatau")
 d = feedparser.parse('http://www.datatau.com/rss')
 
 for f in d['entries']:
-    #print f['title'] + " - " + f['link'] 
     try: 
         title = filter(lambda x: x in string.printable, str(f['title']).encode('utf-8').replace(",",""))
     except:
@@ -23,7 +21,6 @@ for f in d['entries']:
         link = ""
     ET.SubElement(datatau,"title").text = str(title)
     ET.SubElement(datatau,"link").text = str(link)
-
     
 dataisbeautiful = ET.SubElement(item,"dataisbeautiful")
 d = feedparser.parse('https://www.reddit.com/r/dataisbeautiful/.rss')
@@ -40,7 +37,6 @@ for f in d['entries']:
     ET.SubElement(dataisbeautiful,"title").text = str(title)
     ET.SubElement(dataisbeautiful,"link").text = str(link)
 
-
 hacking = ET.SubElement(item,"hacking")
 d = feedparser.parse('https://www.reddit.com/r/hacking/.rss')
 
@@ -56,10 +52,6 @@ for f in d['entries']:
     ET.SubElement(hacking,"title").text = str(title)
     ET.SubElement(hacking,"link").text = str(link)
 
-#print "\n/r/hacking"
-#for f in d['entries']:
-#  print f['title'] + " - " + f['link']
- 
 cybersecurity = ET.SubElement(item,"cybersecurity")  
 d = feedparser.parse('https://www.reddit.com/r/cybersecurity/.rss')
 
@@ -75,22 +67,8 @@ for f in d['entries']:
     ET.SubElement(cybersecurity,"title").text = str(title)
     ET.SubElement(cybersecurity,"link").text = str(link)
 
-#print "\n/r/cybersecurity"
-#for f in d['entries']:
-#  print f['title'] + " - " + f['link']
-
-#d = feedparser.parse('https://www.reddit.com/r/arduino/.rss')
-
-#print "\n/r/arduino"
-#for f in d['entries']:
-#  print f['title'] + " - " + f['link']
-
 ycombinator = ET.SubElement(item,"ycombinator")  
 d = feedparser.parse('https://news.ycombinator.com/rss')
-
-#print "\nhacker news"
-#for f in d['entries']:
-#  print f['title'] + " - " + f['link']
 
 for f in d['entries']:
     try: 
@@ -104,10 +82,6 @@ for f in d['entries']:
     ET.SubElement(ycombinator,"title").text = str(title)
     ET.SubElement(ycombinator,"link").text = str(link)
 
-
-
-
-#root.append(item)
 file = open("daily_news.xml","w")
 ET.ElementTree(root).write(file)
 
